@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registration Numbers</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+  <body>
+	<div id="heading">
+		<h1>Registration Numbers</h1>
+		
+		<img src="images/plate.jpg" alt="car image"/>
+		<h4> (For Cape Town, Paarl & Bellville)</h4>
+	</div>
+	<div class="container">
+
+
+		
+		<div class="error">
+			<p id="errorMessage"></p>
+
+		</div>
+		<form action="/getNumbers" method="post">
+		<input type="text" placeholder="eg. CA 2356 " class="inputText" />
+		<button type="submit" class="submit">Add</button>
+		</section>
+	</form>
+<form action="/reg_numbers" method="get">
+		<section class="filterNumbers">
+
+			<select class="select">
+				<option value="All">All</option>
+				<option value="Cape Town">Cape Town</option>
+				<option value="Paarl">Paarl</option>
+				<option value="Bellville">Bellville</option>
+			</select>
+			<button type="button" class="filter">Show</button>
+		</section>
+		
+	<section class="displayNumbers">
+	
+	</section>
+    </form>
+	</div>
+    </body>
+    </html>
