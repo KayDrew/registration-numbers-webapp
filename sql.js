@@ -45,7 +45,7 @@ console.log(err);
 async function getAll(){
 
 try{
-const result=await db.anyOrNone(`SELECT regNumber FROM registrationNumbers`);
+const result=await db.manyOrNone(`SELECT regNumber FROM registrationNumbers`);
 
 console.log(result);
 return result;

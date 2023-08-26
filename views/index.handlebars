@@ -24,11 +24,12 @@
 				<option value="Paarl">Paarl</option>
 				<option value="Bellville">Bellville</option>
 			</select>
-			<button type="button" class="filter">Show</button>
-		</section>
-		
-	<section class="displayNumbers">
-	
+			<button type="submit" class="filter">Show</button>
+
+
+	{{#each regNums}}
+	<p>{{this.regNumber}}</p>
+	{{/each}}
 	</section>
     </form>
     </div>

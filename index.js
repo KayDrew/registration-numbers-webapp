@@ -56,19 +56,25 @@ app.post('/reg_numbers',async function (req, res,next) {
   let reg= req.body.reg;
 	let code= reg[0]+reg[1];
 
-
-    await queries.recordReg(reg,code);
+  await queries.recordReg(reg,code);
   
+ res.redirect("/");
 
-res.redirect("/");
 }
 );
 
 
 app.get('/reg_numbers',async function (req, res,next) {
 
+  let result= await queries.getAll();
 
-res.redirect("/");
+  
+
+res.render("/",{
+  regNums:result
+}
+);
+
 }
 );
 
