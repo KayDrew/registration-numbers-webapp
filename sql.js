@@ -1,177 +1,68 @@
-import pkg from 'pg';
+export default  function dbQueries(db){
+
+async function  create(){
+
+try{
+await db.none(`CREATE TABLE IF NOT EXISTS towns(name VARCHAR(255) NOT NULL, code VARCHAR(3) NOT NULL);`);
+await db.none(`CREATE TABLE IF NOT EXISTS registrationNumbers(regNumber VARCHAR(12) NOT NULL, code VARCHAR(3) NOT NULL);`);
+
+console.log("created two tables");
+} catch(err){
+
+console.log(err);
+
+}
+}
 
 
-export  default    function setUsers(){
-	
-const { Pool } = pkg;
+async function recordReg(reg,code){
 
-const itemsPool = new Pool({
-    connectionString: process.env.URL,
-    ssl: true
-});
-
-let count=0;
-let names={};
-let individual={};
-
-
-async function setUser(name,language){
-
-let username=name;
-let names1={};
-let count=1;
-
-try {
-	const result=  await itemsPool.query(  `SELECT * FROM  users.name`  );              
+    try{
+        await db.none(`INSERT INTO registrationNumbers (regNumber,code) VALUES ($1,$2)`,[reg,code]);
         
-let len=result.rows;	
-     names1= result.rows[0];
-     
-     
-     if(len.length<1){
-
-if(username && language){
-		
-        const newItem = await itemsPool.query(
-            `INSERT INTO users.name (name,count) VALUES ($1,$2)`, [name,count]
-             );
+        console.log("inserted "+reg+"code: "+code);
+        }catch(err){
+        
+        console.log(err);
         }
-}     
-     else {     
-     	
-     	if(username && language){
-     	
-     for(let i=0;i<len.length;++i){
-
-var user=len[i];
-
-     if(username===user.name){
-     	
-     count=user.count+1;
- const update=await itemsPool.query(`UPDATE users.name SET  count=$2 WHERE name=$1`,[username, count]);
-username="";
-}
-}
 
 }
 
-	if(username && language){
-		
-        const newItem = await itemsPool.query(
-            `INSERT INTO users.name (name,count) VALUES ($1,$2)`, [name,count]
-             );
-        }
-        
-        }
-        
-    } catch (error) {
-        console.log(error);
-        res.status(500).send(error.message)
-    }
-    
-    }
-    
-    
-    async function setCount(){
-    	
-try {
-	
-        const items = await itemsPool.query(
-            `SELECT * FROM  users.name`           
-        );
-        
-        let allItems= items;
-        
-       count=allItems.rows.length;
-             
-    } catch (error) {
-        console.log(error);
-        res.status(500).send(error.message)
-    }    
+async function getTown(code){
 
-}   
+try{
+const result=await db.oneOrNone(`SELECT name FROM towns WHERE code= ($1)`,[code]);
 
+return result.name;
 
-async function  setNames(){
-	
-try {
-const result=      await itemsPool.query(
-         `SELECT name FROM  users.name`           
-        );
-        	
-     names= result.rows;
-     
-    } catch (error) {
-        console.log(error);
-        res.status(500).send(error.message)
-    } 
+}catch(err){
 
-}
-
-
-async function deleteData(){
-	
-try {
-         
-           await itemsPool.query(
-            `DELETE  FROM  users.name`           
-        );
-        
-    } catch (error) {
-        console.log(error);
-        res.status(500).send(error.message)
-    } 
-
-}
-
-async function  getNames(){
-
-return names;
-}
-
-async function getCount(){
-
-return count;
-}
-
-
-async  function  setIndividual(name){
-	
-		
-try {
-	const result=  await itemsPool.query(  `SELECT * FROM  users.name WHERE name=$1` ,[name]);             	
-     individual= result.rows[0];
-     
-console.log(individual);
-
-
-     }catch(err){
-     	
 console.log(err);
 }
 
+}
+
+async function getAll(){
+
+try{
+const result=await db.anyOrNone(`SELECT regNumber FROM registrationNumbers`);
+
+console.log(result);
+return result;
+
+}catch(err){
+
+console.log(err);
+}
 
 }
 
-async function getIndividual(){
 
-return individual;
+return{
+create ,
+recordReg,
+getTown,
+getAll
 }
 
-    return{
-
-setUser,
-setCount,
-setNames,
-getCount, 
-getNames,
-deleteData,
-setIndividual,
-getIndividual 
-
-
 }
-    }
-    
-    
-  
