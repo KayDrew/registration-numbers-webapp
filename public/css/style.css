@@ -3,7 +3,7 @@ body{
   }
   .container {
   margin: auto;
-  width:90%;
+  width:92%;
   border: 1px solid gold;
   border-radius: 10px 10px;
   background-color:#E6BC43;
@@ -100,9 +100,28 @@ body{
   border-radius: 10px 10px;
   }
   
-  button{color: gold;
+  button{color: yellow;
   background-color: rgba(0,0,0,0.7);
   }
+  
+  .display{
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+
+
+}  
+.display  p{
+  background-color: rgba(0,0,0,0.7);
+  color: rgb(250, 231, 123);
+  font-weight: bolder;
+font-size: 1em;  
+width: 70%;
+padding:5px;
+margin-left: 15px;
+font-family: monospace ;
+
+
+}
   
   @media screen and (min-width:700px){
   
@@ -112,5 +131,7 @@ body{
   .displayNumbers{
   width:44%;
   }
+  
+ 
   }
   
