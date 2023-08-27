@@ -46,7 +46,7 @@ app.get('/',async function (req, res,next) {
   
 //regNum.getAllTowns();
 
-
+//await queries.deleteData();
 res.render("index");
 }
 );
@@ -68,11 +68,8 @@ app.get('/reg_numbers',async function (req, res,next) {
 
   let result= await queries.getAll();
 
-  
-
-res.render("/",{
-  regNums:result
-}
+res.render("index",{
+  regNums:result}
 );
 
 }
