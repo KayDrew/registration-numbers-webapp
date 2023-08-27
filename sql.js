@@ -57,12 +57,28 @@ console.log(err);
 
 }
 
+async function deleteData(){
+
+try {
+
+await db.none(`DELETE FROM registrationNumbers`);
+
+console.log("deleted successfully");
+}catch(err){
+
+console.log(err);
+
+}
+
+}
+
 
 return{
 create ,
 recordReg,
 getTown,
-getAll
+getAll,
+deleteData 
 }
 
 }
