@@ -46,7 +46,21 @@ export default function regNumbers(queries) {
 
 				if (reg[0] == "C" && (reg[1] == "A" || reg[1] == "J" || reg[1] == "Y")) {
 
-					error = "";
+					let result=await queries.getAll();
+
+                                         for(let i=0;i<result.length;++i){
+
+                                                if(reg==result[i].regnumber){
+
+                                                       error="This registration number already exists";
+                                                       reg="";
+                                                       break;
+                                                 }
+
+                                                 else{
+                                                        error="";
+                                                  }
+                                         }
 
 				}
 
