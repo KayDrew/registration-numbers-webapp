@@ -2,9 +2,9 @@
 export default function regNumbers(queries) {
 
 	//test 3 string format cases
-	let regex = /[a-zA-Z][\s][1-9]/g;
-	let regex1 = /[a-zA-Z][\s][1-9][-][1-9]/g;
-	let regex2 = /[a-zA-Z][\s][1-9][\s][1-9]/g;
+	let regex = /[a-zA-Z][\s][1-9]/;
+	let regex1 = /[a-zA-Z][\s][1-9][-][1-9]/;
+	let regex2 = /[a-zA-Z][\s][1-9][\s][1-9]/;
 	let error = "";
 	async function getRegTown(req, res, next) {
 
