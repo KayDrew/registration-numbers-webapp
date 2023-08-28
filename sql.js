@@ -17,15 +17,17 @@ console.log(err);
 
 async function recordReg(reg,code){
 
+
+if(reg && code){
     try{
         await db.none(`INSERT INTO registrationNumbers (regNumber,code) VALUES ($1,$2)`,[reg,code]);
         
-        console.log("inserted "+reg+"code: "+code);
+        //console.log("inserted "+reg+"code: "+code);
         }catch(err){
         
         console.log(err);
         }
-
+}
 }
 
 async function getTown(code){
@@ -47,7 +49,7 @@ async function getAll(){
 try{
 const result=await db.manyOrNone(`SELECT regNumber FROM registrationNumbers`);
 
-console.log(result);
+//console.log(result);
 return result;
 
 }catch(err){
@@ -81,4 +83,4 @@ getAll,
 deleteData 
 }
 
-}
+            }
