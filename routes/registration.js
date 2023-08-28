@@ -1,6 +1,8 @@
 
 export default function regNumbers(queries) {
-	let regex=  /[[a-zA-Z][\s][1-9]/g;
+	let regex=  /[a-zA-Z][\s][1-9]/g;
+	let regex1=/[a-zA-Z][\s][1-9][-][1-9]/g;
+	let regex2=/[a-zA-Z][\s][1-9][\s][1-9]/g;
 	let error="";
 	async function getRegTown(req,res, next){
 
@@ -38,7 +40,7 @@ async function recordRegNum(req,res, next){
 	
 	if(reg){
 
-if(regex.test(reg) && (reg.length>=6 && reg.length<=9)){
+if((regex.test(reg) || regex1.test(reg) || regex2.test(reg)) && (reg.length>=6 && reg.length<=20)){
 
 if(reg[0]=="C" && (reg[1]=="A" || reg[1]=="J" || reg[1]=="Y")){
 
