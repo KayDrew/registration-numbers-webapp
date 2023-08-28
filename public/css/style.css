@@ -26,13 +26,12 @@ body{
   
   }
   
-  #errorMessage{
-  
-  color: #ff7a52;
-  margin-left: 20px;
-  font-size: 14px;
-  
-  }
+.error{
+color:#E23D4D;
+
+font-family:calibri
+
+}
   .submit{
   
   border:none;
