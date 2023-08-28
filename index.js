@@ -51,17 +51,7 @@ res.render("index");
 }
 );
 
-app.post('/reg_numbers',async function (req, res,next) {
-
-  let reg= req.body.reg;
-	let code= reg[0]+reg[1];
-
-  await queries.recordReg(reg,code);
-  
- res.redirect("/");
-
-}
-);
+app.post('/reg_numbers',regNum.recordRegNum);
 
 
 app.get('/reg_numbers',async function (req, res,next) {
