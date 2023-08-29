@@ -1,5 +1,5 @@
 body{
-    background-color: black;
+    background-color: rgba(0,0,0,0.75);
   }
   .container {
   margin: auto;
@@ -103,6 +103,22 @@ font-family:calibri
   background-color: rgba(0,0,0,0.7);
   }
   
+ .reset{
+width: 90%;
+margin-left: 5%;
+margin-right: 5%;
+margin-bottom: 2%;
+color: rgba(0,0,0,0.7);
+background-color:rgb(250, 231, 123);
+font-size: 1.7em;
+font-weight: bolder;
+border-color:yellow;
+font-family: monospace;
+border-radius: 7px 7px 7px 7px;
+
+
+
+}
   .display{
 display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
