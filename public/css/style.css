@@ -1,4 +1,4 @@
-body{
+html{
     background-color: rgba(0,0,0,0.75);
   }
   .container {
@@ -103,7 +103,7 @@ font-family:calibri
   background-color: rgba(0,0,0,0.7);
   }
   
- .reset{
+.reset{
 width: 90%;
 margin-left: 5%;
 margin-right: 5%;
@@ -115,9 +115,6 @@ font-weight: bolder;
 border-color:yellow;
 font-family: monospace;
 border-radius: 7px 7px 7px 7px;
-
-
-
 }
   .display{
 display: grid;
