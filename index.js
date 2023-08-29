@@ -1,5 +1,4 @@
 import 'dotenv/config';
-//console.log(process.env.DATABASE_URL);
 import express from 'express';
 import bodyParser from 'body-parser';
 import { engine } from 'express-handlebars';
@@ -11,17 +10,13 @@ import regNumbers from './routes/registration.js';
 
 const app = express();
 
-
 app.use(express.static('public'));
 app.engine('handlebars', engine());
-
 app.set('view engine', 'handlebars');
-
 app.set('views', './views');
 app.use(express.static('public'));
 app.use(express.static('images'))
 app.use(bodyParser.urlencoded({ extended: false }));
-// parse application/json
 app.use(bodyParser.json());
 app.use(express.json());
 
@@ -38,34 +33,13 @@ const Pool= pkg();
 const db=Pool ({connectionString ,
 ssl: true 
 });
-
 const queries = dbQueries(db);
 const regNum= regNumbers(queries);
 
-app.get('/',async function (req, res,next) {
-  
-//regNum.getAllTowns();
-
-//await queries.deleteData();
-res.render("index");
-}
-);
-
+app.get('/',regNum.homeRoute);
 app.post('/reg_numbers',regNum.recordRegNum);
-
-
-app.get('/reg_numbers',async function (req, res,next) {
-
-  let result= await queries.getAll();
-
-res.render("index",{
-  regNums:result}
-);
-
-}
-);
-
-
+app.post('/towns',regNum.show) ;
+app.post("/reset", regNum.deleteAll);
 
 let PORT = process.env.PORT || 8080;
 
