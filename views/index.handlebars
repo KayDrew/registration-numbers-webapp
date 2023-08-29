@@ -4,6 +4,7 @@
 		
 		<img src="plate.jpg" alt="car image"/>
 		<h4> (For Cape Town, Paarl & Bellville)</h4>
+		<h6>(eg CA 123456, CJ 456-786, CY 789 765)</h6>
 	</div>	
     <div class="container">
 		<div class="error">
@@ -15,10 +16,10 @@
 		<button type="submit" class="submit">Add</button>
 		</section>
 	</form>
-<form action="/reg_numbers" method="get">
+<form action="towns" method="post">	
 		<section class="filterNumbers">
 
-			<select class="select">
+			<select class="select" name="town">
 				<option value="All">All</option>
 				<option value="Cape Town">Cape Town</option>
 				<option value="Paarl">Paarl</option>
@@ -26,12 +27,18 @@
 			</select>
 			<button type="submit" class="filter">Show</button>
 </section>
+</form>
+
+<form  action="/" method="get">
 <section  class="display">
 	{{#each regNums}}
 	<p>{{this.regnumber}}</p>
 	{{/each}}
 	</section>
-    </form>
+</form>
+<form  action="/reset" method="post">
+<button type="submit" class="reset">RESET</button>
+</form>
     </div>
 	
    
