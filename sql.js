@@ -32,7 +32,7 @@ async function getTown(town){
 
   try{
        const townName= await db.oneOrNone(`SELECT  code FROM towns WHERE  name=($1)`,[town]);	
-       const result=await db.manyOrNone(`SELECT registrationNumbers.regNumber FROM registrationNumbers INNER JOIN towns ON registrationNumbers.code=$1`, townName.code);  
+       const result=await db.manyOrNone(`SELECT regNumber FROM registrationNumbers WHERE code=$1`,townName.code);
      
        return result;
 
