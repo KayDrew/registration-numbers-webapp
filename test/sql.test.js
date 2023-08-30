@@ -9,7 +9,7 @@ const db = Pool({
     ssl: true
 });
 
-let query= dbQueries1(db);
+let query= dbQueries(db);
 
 
 describe('The greeting web app',async function(){
