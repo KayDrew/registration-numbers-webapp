@@ -12,7 +12,7 @@ const db = Pool({
 let query= dbQueries(db);
 
 
-describe('The greeting web app',async function(){
+describe('The registration numbers web app',async function(){
 	
 beforeEach(async function () {
 	
@@ -29,7 +29,7 @@ beforeEach(async function () {
    
 
  it('should return the total number of registration numbers that have been been recorded', async function(){
-       assert.equal(0, await queries.getAll().length);
+       assert.equal(0, await query.getAll().length);
 });
         
         
