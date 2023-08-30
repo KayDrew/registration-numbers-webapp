@@ -10,11 +10,6 @@ jobs:
       postgres:
         image: postgres
 
-        env:
-          POSTGRES_PASSWORD: fv40hHCpZkLeEFjx_gMnqiNgVRTAlNdN
-          POSTGRES_USER: pugkpudt
-          POSTGRES_DB: pugkpudt
-
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
