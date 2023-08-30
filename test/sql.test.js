@@ -9,7 +9,7 @@ const db = Pool({
     ssl: true
 });
 
-let query= dbQueries(db);
+let queries= dbQueries(db);
 
 
 describe('The registration numbers web app',async function(){
@@ -18,7 +18,7 @@ beforeEach(async function () {
 	
     try {
         	
-       await query.deleteData();
+       await queries.deleteData();
            }catch(err){
 
          console.log(err);
@@ -26,18 +26,50 @@ beforeEach(async function () {
         
 }  );
       
-   
 
  it('should return the total number of registration numbers that have been been recorded', async function(){
-       assert.equal(0, await query.getAll().length);
+    
+   let result= await queries.getAll();
+   assert.equal(0, result.length);
 });
-        
-        
+             
     
     it('should return all registration numbers', async function(){
-                          
+    	
+    let testResult=[{"regnumber":"CA 789 567"},
+    {"regnumber":"CY 789 567"},{"regnumber":"CJ 789 567"}];
+    
+    await queries.recordReg("CA 789 567", "CA");
+    await queries.recordReg("CY 789 567", "CY");
+    await queries.recordReg("CJ 789 567", "CJ");
+    
+    let result=await queries.getAll();
+    
+        assert.equal(JSON.stringify(testResult), JSON.stringify(result));
    });
-   	
+   
+  it('should return registration numbers for a specific town only', async function(){
+     let testResult=[{"regnumber":"CA 789 567"}];
+     let testResult1=[{"regnumber":"CJ 789 567"}];
+    await queries.recordReg("CA 789 567", "CA");
+    await queries.recordReg("CY 789 567", "CY");
+    await queries.recordReg("CJ 789 567", "CJ");
+    
+    let result=await queries.getTown("Cape Town");
+    assert.equal(JSON.stringify(testResult), JSON.stringify(result));
+   
+    let result1=await queries.getTown("Paarl");
+    assert.equal(JSON.stringify(testResult1), JSON.stringify(result1));
+     
+});
+
+  it('should not accept empty registration numbers.', async function(){
+  	
+   await queries.recordReg("", "CA");
+    let result= await queries.getAll();
+   assert.equal(0, result.length);
+
+});
 
        after(function () {
         db.$pool.end;
