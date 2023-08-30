@@ -11,7 +11,7 @@ jobs:
         image: postgres
 
         env:
-          POSTGRES_PASSWORD: "fv40hHCpZkLeEFjx_gMnqiNgVRTAlNdN"
+          POSTGRES_PASSWORD: fv40hHCpZkLeEFjx_gMnqiNgVRTAlNdN
           POSTGRES_USER: pugkpudt
           POSTGRES_DB: pugkpudt
 
@@ -38,9 +38,9 @@ jobs:
 
     
         env:
-          URL: "postgres://pugkpudt:***@silly.db.elephantsql.com/pugkpudt"
+          URL: "postgres://pugkpudt:fv40hHCpZkLeEFjx_gMnqiNgVRTAlNdN@silly.db.elephantsql.com/pugkpudt"
 
       - name: Run the mock tests function
         run: npm test
         env:
-          URL: postgres://pugkpudt:***@silly.db.elephantsql.com/pugkpudt
+          URL: postgres://pugkpudt:fv40hHCpZkLeEFjx_gMnqiNgVRTAlNdN@silly.db.elephantsql.com/pugkpudt
