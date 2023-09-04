@@ -5,8 +5,8 @@ import { engine } from 'express-handlebars';
 import flash from 'express-flash';
 import session from 'express-session';
 import pkg from 'pg-promise';
-import dbQueries from './sql.js';
-import regNumbers from './routes/registration.js';
+import dbQueries from './database.js';
+import regNumbers from './routes/routes.js';
 
 const app = express();
 
