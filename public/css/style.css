@@ -103,7 +103,7 @@ font-family:calibri
   background-color: rgba(0,0,0,0.7);
   }
   
-.reset{
+ .reset{
 width: 90%;
 margin-left: 5%;
 margin-right: 5%;
@@ -115,11 +115,14 @@ font-weight: bolder;
 border-color:yellow;
 font-family: monospace;
 border-radius: 7px 7px 7px 7px;
+
+
+
 }
   .display{
 display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
-
+padding-left: 40px;
 
 }  
 .display  p{
@@ -127,10 +130,10 @@ grid-template-columns: 1fr 1fr 1fr 1fr;
   color: rgb(250, 231, 123);
   font-weight: bolder;
 font-size: 1em;  
-width: 70%;
+width: 65%;
 padding:5px;
-margin-left: 15px;
 font-family: monospace ;
+
 
 
 }
