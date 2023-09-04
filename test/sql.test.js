@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import assert from 'assert';
-import dbQueries from '../sql.js';
+import dbQueries from '../database.js';
 import pkg from 'pg-promise';
 const connectionString = process.env.URL;
 const Pool = pkg();
@@ -39,9 +39,9 @@ beforeEach(async function () {
     let testResult=[{"regnumber":"CA 789 567"},
     {"regnumber":"CY 789 567"},{"regnumber":"CJ 789 567"}];
     
-    await queries.recordReg("CA 789 567", "CA");
-    await queries.recordReg("CY 789 567", "CY");
-    await queries.recordReg("CJ 789 567", "CJ");
+    await queries.recordReg("CA 789 567", await queries.getID("CA"));
+    await queries.recordReg("CY 789 567",await queries.getID("CY"));
+    await queries.recordReg("CJ 789 567",await queries.getID( "CJ"));
     
     let result=await queries.getAll();
     
@@ -51,9 +51,9 @@ beforeEach(async function () {
   it('should return registration numbers for a specific town only', async function(){
      let testResult=[{"regnumber":"CA 789 567"}];
      let testResult1=[{"regnumber":"CJ 789 567"}];
-    await queries.recordReg("CA 789 567", "CA");
-    await queries.recordReg("CY 789 567", "CY");
-    await queries.recordReg("CJ 789 567", "CJ");
+    await queries.recordReg("CA 789 567", await queries.getID("CA"));
+    await queries.recordReg("CY 789 567",await queries.getID("CY"));
+    await queries.recordReg("CJ 789 567",await queries.getID( "CJ"));
     
     let result=await queries.getTown("Cape Town");
     assert.equal(JSON.stringify(testResult), JSON.stringify(result));
@@ -65,7 +65,7 @@ beforeEach(async function () {
 
   it('should not accept empty registration numbers.', async function(){
   	
-   await queries.recordReg("", "CA");
+   await queries.recordReg("", 1);
     let result= await queries.getAll();
    assert.equal(0, result.length);
 
