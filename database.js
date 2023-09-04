@@ -112,7 +112,7 @@ console.log(err);
 }
 
 return{
-create ,
+
 recordReg,
 getTown,
 getAll,
